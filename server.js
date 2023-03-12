@@ -34,5 +34,5 @@ app.post('/checkout', async (req, res) => {
         url: session.url
     }))
 })
-let port = 4000
+const port = 4000
 app.listen(port, () => console.log(`Express sever started, listening on port ${port}`))
