@@ -21,6 +21,10 @@ app.use(express.json());
 //   console.log("Fulfilling order", lineItems);
 // }
 
+app.get('/', (req, res) => {
+  res.send('Feature florals server.')
+})
+
 app.post("/checkout", async (req, res) => {
     console.log(req.body);
     const items = req.body.items;
