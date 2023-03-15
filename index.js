@@ -48,7 +48,14 @@ app.post("/checkout", async (req, res) => {
         mode: 'payment',
         allow_promotion_codes: true,
         success_url: "https://featureflorals.co.uk/success",
-        cancel_url: "https://featureflorals.co.uk/cancel"
+        cancel_url: "https://featureflorals.co.uk/cancel",
+        custom_fields: [
+            {
+              key: 'message',
+              label: {type: 'custom', custom: 'Personalized message '},
+              type: 'text',
+            },
+        ],
 
     });
 
@@ -57,24 +64,34 @@ app.post("/checkout", async (req, res) => {
     }));
 });
 
-// app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
-//   const sig = request.headers['stripe-signature'];
+const endpointSecret = "whsec_5ca578455e29aa1aa42df8a5894dafc5335ea3d425e6aae9ce872ecf9aac722b";
 
-//   let event;
-
-//   try {
-//     event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-//     console.log('Webhook verified!')
-//   } catch (err) {
-//     console.log(`Webhook Error: ${err.message}`)
-//     response.status(400).send(`Webhook Error: ${err.message}`);
-//     return;
-//   }
-
-
-//   // Return a 200 response to acknowledge receipt of the event
-//   response.send().end;
-// });
+app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+    const sig = request.headers['stripe-signature'];
+  
+    let event;
+  
+    try {
+      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+    } catch (err) {
+      response.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
+  
+    // Handle the event
+    switch (event.type) {
+      case 'checkout.session.completed':
+        const checkoutSessionCompleted = event.data.object;
+        // Then define and call a function to handle the event checkout.session.completed
+        break;
+      // ... handle other event types
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+  
+    // Return a 200 response to acknowledge receipt of the event
+    response.send();
+  });
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
