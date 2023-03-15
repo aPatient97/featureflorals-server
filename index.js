@@ -84,6 +84,11 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
         const checkoutSessionCompleted = event.data.object;
             console.log('checkout session completed yaaaaasss')
         break;
+        case 'payment_intent.succeeded':
+            const paymentIntentSucceeded = event.data.object;
+            console.log('payment intent logged yaaas')
+      // Then define and call a function to handle the event payment_intent.succeeded
+      break;
       // ... handle other event types
       default:
         console.log(`Unhandled event type ${event.type}`);
