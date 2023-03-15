@@ -30,7 +30,7 @@ app.post("/checkout", async (req, res) => {
     const items = req.body.items;
     let lineItems = [];
     items.forEach((item)=> {
-        console.log(item)
+        console.log('this is item id', item.id)
         lineItems.push(
             {
                 price: item.id,
