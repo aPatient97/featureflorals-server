@@ -59,8 +59,8 @@ app.post("/checkout", async (req, res) => {
         //     coupon: 'promo_1Mkr9cKHh276IJGLHfPuhinX',
         //   }],
         allow_promotion_codes: true,
-        success_url: "http://localhost:3000/success",
-        cancel_url: "http://localhost:3000/cancel"
+        success_url: "https://featureflorals.co.uk/success",
+        cancel_url: "https://featureflorals.co.uk/cancel"
 
     });
 
