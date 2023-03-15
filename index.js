@@ -80,19 +80,35 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
   
     // Handle the event
     switch (event.type) {
-      case 'checkout.session.completed':
-        const checkoutSessionCompleted = event.data.object;
-            console.log('checkout session completed yaaaaasss')
-        break;
-        case 'payment_intent.succeeded':
+        case 'billing_portal.session.created':
+            const billingPortalSessionCreated = event.data.object;
+            // Then define and call a function to handle the event billing_portal.session.created
+            console.log(`${event.type} has been logged yee boiii`)
+            break;
+          case 'checkout.session.completed':
+            const checkoutSessionCompleted = event.data.object;
+            // Then define and call a function to handle the event checkout.session.completed
+            break;
+          case 'payment_intent.canceled':
+            const paymentIntentCanceled = event.data.object;
+            // Then define and call a function to handle the event payment_intent.canceled
+            break;
+          case 'payment_intent.created':
+            const paymentIntentCreated = event.data.object;
+            // Then define and call a function to handle the event payment_intent.created
+            break;
+          case 'payment_intent.payment_failed':
+            const paymentIntentPaymentFailed = event.data.object;
+            // Then define and call a function to handle the event payment_intent.payment_failed
+            break;
+          case 'payment_intent.succeeded':
             const paymentIntentSucceeded = event.data.object;
-            console.log('payment intent logged yaaas')
-      // Then define and call a function to handle the event payment_intent.succeeded
-      break;
-      // ... handle other event types
-      default:
-        console.log(`Unhandled event type ${event.type}`);
-    }
+            // Then define and call a function to handle the event payment_intent.succeeded
+            break;
+          // ... handle other event types
+          default:
+            console.log(`Unhandled event type ${event.type}`);
+        }
   
     // Return a 200 response to acknowledge receipt of the event
     response.send();
