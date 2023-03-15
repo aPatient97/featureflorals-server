@@ -33,9 +33,9 @@ app.post("/checkout", async (req, res) => {
         console.log(item)
         lineItems.push(
             {
+                price: item.id,
                 price_data: {
-                    currency: 'gbp',
-                    product: item.id
+                    currency: 'gbp'
                 },
                 quantity: item.quantity
             }
