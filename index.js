@@ -82,7 +82,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
     switch (event.type) {
       case 'checkout.session.completed':
         const checkoutSessionCompleted = event.data.object;
-        // Then define and call a function to handle the event checkout.session.completed
+            console.log('checkout session completed yaaaaasss')
         break;
       // ... handle other event types
       default:
