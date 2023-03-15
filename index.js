@@ -48,15 +48,7 @@ app.post("/checkout", async (req, res) => {
         mode: 'payment',
         allow_promotion_codes: true,
         success_url: "https://featureflorals.co.uk/success",
-        cancel_url: "https://featureflorals.co.uk/cancel",
-        custom_fields: [
-            {
-              key: 'message',
-              label: {type: 'custom', custom: 'Personalized message '},
-              type: 'text',
-            },
-        ],
-
+        cancel_url: "https://featureflorals.co.uk/cancel"
     });
 
     res.send(JSON.stringify({
