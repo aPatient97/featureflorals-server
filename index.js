@@ -40,18 +40,18 @@ app.post("/checkout", async (req, res) => {
 
     const session = await stripe.checkout.sessions.create({
         shipping_address_collection: {allowed_countries: ['GB']},
-        shipping_options: [
-          {
-            shipping_rate_data: {
-              type: 'fixed_amount',
-              fixed_amount: {amount: 0, currency: 'gbp'},
-              display_name: 'Free collection on Saturday 17th March between 12pm-8pm',
-              delivery_estimate: {
-                minimum: {unit: 'business_day', value: 1},
-                maximum: {unit: 'business_day', value: 5},
-              }
-            },
-          },
+        shipping_options: [ {shipping_rate: 'shr_1MlxR0KHh276IJGLNQgKueVb'}, {shipping_rate: 'shr_1MlxXxKHh276IJGLVA4cx4GS'}
+          // {
+          //   shipping_rate_data: {
+          //     type: 'fixed_amount',
+          //     fixed_amount: {amount: 0, currency: 'gbp'},
+          //     display_name: 'Free collection on Saturday 17th March between 12pm-8pm',
+          //     delivery_estimate: {
+          //       minimum: {unit: 'business_day', value: 1},
+          //       maximum: {unit: 'business_day', value: 5},
+          //     }
+          //   },
+          // },
         ],
         line_items: lineItems,
         mode: 'payment',
