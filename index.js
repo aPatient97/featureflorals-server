@@ -44,12 +44,19 @@ app.post("/checkout", async (req, res) => {
           {
             shipping_rate_data: {
               type: 'fixed_amount',
-              fixed_amount: {amount: 0, currency: 'gbp'},
-              display_name: 'Free shipping',
+              fixed_amount: {amount: 600, currency: 'gbp'},
+              display_name: 'Sunday 18th March delivery',
               delivery_estimate: {
                 minimum: {unit: 'business_day', value: 1},
                 maximum: {unit: 'business_day', value: 5},
               },
+              type: 'fixed_amount',
+              fixed_amount: {amount: 0, currency: 'gbp'},
+              display_name: 'Free collection on Saturday 17th March between 12pm-8pm',
+              delivery_estimate: {
+                minimum: {unit: 'business_day', value: 1},
+                maximum: {unit: 'business_day', value: 5},
+              }
             },
           },
         ],
